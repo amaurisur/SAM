@@ -77,9 +77,14 @@ public final class WikiExample {
 //    context.close();
     
     /********************* pruebas json ************************/
-    indicador i = new indicador();
-    Gson gson = new Gson();
+    Indicador i = new Metrica_Compuesta("Raiz");
+    Indicador i_1 = new Metrica_Compuesta("Metrica Compuesta 1");
+    Indicador i_2 = new Metrica_Compuesta("Metrica COmpuesta 2");
+    Indicador i_1_1 = new Metrica_Simple("Metrica Simple 1.1");
+    Indicador i_1_2 = new Metrica_Simple("Metrica Simple 1.2");
     
+    Gson gson = new Gson();
+      
     String json = gson.toJson(i);
     try{
      
