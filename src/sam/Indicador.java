@@ -6,6 +6,9 @@
 
 package sam;
 
+import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +35,8 @@ import java.util.List;
  */
 public abstract class Indicador {
     //protected String params = "Soy parametro";
-    protected String name = " Mi nombre es: ";
-    protected int posicion = 0; 
+    @Expose protected String name = " Mi nombre es: ";
+    @Expose protected int posicion = 0; 
     
 //   public List<String> children = new ArrayList<String>(){
 //        {
@@ -45,12 +48,12 @@ public abstract class Indicador {
 //    public String toString(){
 //        return "indicador {params=" + params + ",name=" + name + ",children=" + children +"}";
 //    }
-//    
-    public Indicador(String nombre){
-      this.name = nombre;  
+//
+    public Indicador (String nombre){
+        this.name = nombre;  
     }
     abstract public void agregar(Indicador i);
     abstract public void eliminar(Indicador i);
     abstract public void evaluar();
-    
+   
 }

@@ -6,6 +6,8 @@
 
 package sam;
 
+import com.google.gson.annotations.Expose;
+
 import java.util.ArrayList;
 
 /**
@@ -14,13 +16,16 @@ import java.util.ArrayList;
  */
 public class Metrica_Compuesta extends Indicador{
 
-    private ArrayList<Indicador> indicadores;
+    @Expose private ArrayList<Indicador> indicadores;
+    
     public Metrica_Compuesta(String nombre) {
         super(nombre);
+        indicadores = new ArrayList<Indicador>();
     }
 
     @Override
     public void agregar(Indicador i) {
+        
         indicadores.add(i);
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -32,12 +37,21 @@ public class Metrica_Compuesta extends Indicador{
 
     @Override
     public void evaluar() {
-        this.posicion += 1;
-        for (int i = 0; i < this.indicadores.size(); i++){
-            this.indicadores.get(i).posicion += 1;
-        }
-        
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//        this.posicion += 1;
+//        for (int i = 0; i < this.indicadores.size(); i++){
+//            this.indicadores.get(i).posicion += 1;
+//        }
+//        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+//    @Override
+//    public String draw(Gson g){
+//        String s;
+//        for (int i = 0; i < this.indicadores.size(); i++){
+//            s =  this.indicadores.get(i).draw(g);
+//        }
+//        return "";
+//    }
     
 }

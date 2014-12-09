@@ -6,10 +6,14 @@
 
 package sam;
 
+import com.google.gson.Gson;
+import java.io.FileWriter;
+import java.io.IOException;
 /**
  *
  * @author sarli
  */
-public @interface view {
-    
+public interface View {
+    Gson json = new Gson();
+    public String draw(Gson g);
 }
