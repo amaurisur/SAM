@@ -1,0 +1,37 @@
+{
+"children":
+                [
+                    {"children":
+                        [
+                            {   
+                                "children":[],
+                                "name":"Metrica Simple 1.1",
+                                "posicion":0,
+                                "descripcion":"TODO",
+                                "porcentaje":1
+                            },   
+                            {   "children":[],
+                                "name":"Metrica Simple 1.2",
+                                "posicion":0,
+                                "descripcion":"TODO",
+                                "porcentaje":1
+                            }
+                        ],
+                     "name":"Metrica Compuesta 1",
+                     "posicion":1,
+                     "descripcion":"TODO",
+                     "porcentaje":1
+                    },
+                    {
+                     "children":[],
+                     "name":"Metrica Simple 2",
+                     "posicion":1,
+                     "descripcion":"TODO",
+                     "porcentaje": 1                    
+                    }
+                ],
+"name":"RootNode",
+"posicion":0,
+"descripcion":"TODO",
+"porcentaje":1
+}
