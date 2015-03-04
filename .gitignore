@@ -14,3 +14,4 @@ hs_err_pid*
 /dist/
 /Java/build/
 /Java/nbproject/private/
+/Java/dist/
