@@ -1,4 +1,0 @@
-SAM
-===
-
-Software Architecture Metrics
