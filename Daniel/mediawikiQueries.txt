@@ -1,0 +1,2 @@
+http://localhost:8080/mediawiki/api.php?format=xml&action=parse&page=Top_Level_Module_Uses_View&prop=sections
+http://localhost:8080/mediawiki/api.php?format=xml&action=parse&page=Top_Level_Module_Uses_View&section=2

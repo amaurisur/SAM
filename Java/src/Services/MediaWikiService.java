@@ -98,7 +98,7 @@ public class MediaWikiService {
 	InputStream input = null;
  
 	try { 
-            input = new FileInputStream("services.properties");
+            input = new FileInputStream("src\\Resources\\services.properties");
 
             // load a properties file
             prop.load(input);

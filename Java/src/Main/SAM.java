@@ -8,6 +8,7 @@ package Main;
 import Models.Metrica_Simple;
 import Models.Indicador;
 import Models.Metrica_Compuesta;
+import Services.MediaWikiService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.FileInputStream;
@@ -25,6 +26,9 @@ public class SAM {
      */
     public static void main(String[] args) {
         Properties prop = LoadProperties();
+        String path = prop.getProperty("jsonPath");
+        
+        MediaWikiService x = new MediaWikiService();
         
         Indicador i = new Metrica_Compuesta("RootNode");
         Indicador i_1 = new Metrica_Compuesta("Metrica Compuesta 1");
@@ -42,7 +46,7 @@ public class SAM {
         String json = gson.toJson(i);
 
         try{
-            try (FileWriter writer = new FileWriter(prop.getProperty("jsonPath"))) {
+            try (FileWriter writer = new FileWriter(path)) {
                 writer.write(json);
             }
 
@@ -57,7 +61,7 @@ public class SAM {
 	InputStream input = null;
  
 	try { 
-            input = new FileInputStream("sam.properties");
+            input = new FileInputStream("src\\Resources\\sam.properties");
 
             // load a properties file
             prop.load(input);
