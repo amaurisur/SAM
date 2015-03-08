@@ -22,29 +22,21 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Properties;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-
 /**
  *
  * @author Daniel altamirano
  */
 public class MediaWikiService {
     
-    private static Properties properties = LoadProperties();
-    private static String ApiUrl = properties.getProperty("mediawikiApi");
+    private final Properties properties = LoadProperties();
+    private final String ApiUrl = properties.getProperty("mediawikiApi");
     
-    public static String GetWikiContent(HashMap hm){
+    public String GetWikiContent(HashMap hm){
         Iterator it = hm.keySet().iterator();
         String url = ApiUrl;
         if(it.hasNext()){
@@ -54,6 +46,9 @@ public class MediaWikiService {
             String key = (String)it.next();
             String value = (String)hm.get(key);
             url += key + "=" + value;
+            if (it.hasNext()) {
+                url += "&";
+            }
         }
         
         String result = "";
@@ -69,28 +64,27 @@ public class MediaWikiService {
     }
     
     private static String sendGet(String url) throws Exception {
-        
-        HttpClient client = new DefaultHttpClient();
-        HttpGet request = new HttpGet(url);
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-        // add request header
-        // request.addHeader("User-Agent", USER_AGENT);
+        // optional default is GET
+        con.setRequestMethod("GET");
 
-        HttpResponse response = client.execute(request);
-
+        int responseCode = con.getResponseCode();
         System.out.println("\nSending 'GET' request to URL : " + url);
-        System.out.println("Response Code : " + 
-            response.getStatusLine().getStatusCode());
+        System.out.println("Response Code : " + responseCode);
 
-        BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuilder response = new StringBuilder();
 
-        StringBuilder result = new StringBuilder();
-        String line = "";
-        while ((line = rd.readLine()) != null) {
-            result.append(line);
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
         }
+        in.close();
 
-        return result.toString();
+        return response.toString();
     }
     
     private static Properties LoadProperties(){

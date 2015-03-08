@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.Properties;
 /**
  *
@@ -28,7 +29,14 @@ public class SAM {
         Properties prop = LoadProperties();
         String path = prop.getProperty("jsonPath");
         
-        MediaWikiService x = new MediaWikiService();
+        MediaWikiService wikiService = new MediaWikiService();
+        
+        HashMap wikiParms = new HashMap();
+        wikiParms.put("format", "xml");
+        wikiParms.put("action", "parse");
+        wikiParms.put("page", "Top_Level_Module_Uses_View");
+        wikiParms.put("prop", "sections|categories");
+        wikiService.GetWikiContent(wikiParms);
         
         Indicador i = new Metrica_Compuesta("RootNode");
         Indicador i_1 = new Metrica_Compuesta("Metrica Compuesta 1");
