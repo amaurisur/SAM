@@ -12,25 +12,25 @@ import java.util.ArrayList;
  *
  * @author Daniel Altamirano
  */
-public class Metrica_Compuesta extends Indicador{
-    @Expose @SerializedName("children")  private ArrayList<Indicador> indicadores = new ArrayList<Indicador>();
+public class CompositeIndicator extends Indicator{
+    @Expose @SerializedName("children") private ArrayList<Indicator> indicators = new ArrayList<Indicator>();
     
-    public Metrica_Compuesta(String nombre) {
-        super(nombre);
+    public CompositeIndicator(String name) {
+        super(name);
     }
 
     @Override
-    public void agregar(Indicador i) {        
-        indicadores.add(i);
+    final public void add(Indicator i) {        
+        indicators.add(i);
     }
     
     @Override
-    public void eliminar(Indicador i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    final public void remove(Indicator i) {
+        indicators.remove(i);
     }
 
     @Override
-    public void evaluar() {
+    public void eval() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

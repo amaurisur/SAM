@@ -3,3 +3,6 @@ http://localhost:8080/mediawiki/api.php?format=xml&action=parse&page=Top_Level_M
 
 //Get categories for this page
 http://localhost:8080/mediawiki/api.php?format=xml&action=parse&page=Top_Level_Module_Uses_View&prop=categories
+
+Get pages with category
+http://localhost:8080/mediawiki/api.php?format=xml&action=query&list=categorymembers&cmtitle=Category:System_Overview

@@ -5,9 +5,9 @@
  */
 package Main;
 
-import Models.Metrica_Simple;
-import Models.Indicador;
-import Models.Metrica_Compuesta;
+import Models.SimpleIndicator;
+import Models.Indicator;
+import Models.CompositeIndicator;
 import Services.MediaWikiService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,16 +38,16 @@ public class SAM {
         wikiParms.put("prop", "sections|categories");
         wikiService.GetWikiContent(wikiParms);
         
-        Indicador i = new Metrica_Compuesta("RootNode");
-        Indicador i_1 = new Metrica_Compuesta("Metrica Compuesta 1");
-        Indicador i_2 = new Metrica_Compuesta("Metrica COmpuesta 2");
-        Indicador i_1_1 = new Metrica_Simple("Metrica Simple 1.1",1);
-        Indicador i_1_2 = new Metrica_Simple("Metrica Simple 1.2",1);
+        Indicator i = new CompositeIndicator("RootNode");
+        Indicator i_1 = new CompositeIndicator("Metrica Compuesta 1");
+        Indicator i_2 = new CompositeIndicator("Metrica COmpuesta 2");
+        Indicator i_1_1 = new SimpleIndicator("Metrica Simple 1.1",1);
+        Indicator i_1_2 = new SimpleIndicator("Metrica Simple 1.2",1);
 
-        i_1.agregar(i_1_1);
-        i_1.agregar(i_1_2);
-        i.agregar(i_1);
-        i.agregar(i_2);
+        i_1.add(i_1_1);
+        i_1.add(i_1_2);
+        i.add(i_1);
+        i.add(i_2);
 
         //i.evaluar();  
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();

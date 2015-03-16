@@ -16,27 +16,21 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 package Services;
-
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Properties;
 /**
  *
  * @author Daniel altamirano
  */
 public class MediaWikiService {
     
-    private final Properties properties = LoadProperties();
-    private final String ApiUrl = properties.getProperty("mediawikiApi");
+    private static final String ApiUrl = PropertiesService.Load("services").getProperty("mediawikiApi");
     
-    public String GetWikiContent(HashMap hm){
+    public static String GetWikiContent(HashMap hm){
         Iterator it = hm.keySet().iterator();
         String url = ApiUrl;
         if(it.hasNext()){
@@ -85,29 +79,5 @@ public class MediaWikiService {
         in.close();
 
         return response.toString();
-    }
-    
-    private static Properties LoadProperties(){
-        Properties prop = new Properties();
-	InputStream input = null;
- 
-	try { 
-            input = new FileInputStream("src\\Resources\\services.properties");
-
-            // load a properties file
-            prop.load(input);
-	} catch (IOException ex) {
-            ex.printStackTrace();
-	} finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-	}
-        
-        return prop;
     }
 }

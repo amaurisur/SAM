@@ -1,0 +1,44 @@
+<root>
+  <h2>
+    <span class="mw-headline" id="Quality_Attribute_Requirements">Quality Attribute Requirements</span>
+    <span class="mw-editsection">
+      <span class="mw-editsection-bracket">[</span>
+      <a href="/mediawiki/index.php?title=System_Overview&amp;action=edit&amp;section=1" title="Edit section: Quality Attribute Requirements">edit</a>
+      <span class="mw-editsection-bracket">]</span>
+    </span>
+  </h2>
+  <p>The quality attribute scenarios (QAS) are listed below, separated by quality attribute.</p>
+  <dl>
+    <dt>Modifiability</dt>
+  </dl>
+  <ul>
+    <li>QAS1. A new business partner (airline, lodging, or activity provider) that uses its own web services interface is added to the system in no more than 10 person-days of effort for the implementation. The business goal is easy integration with new business partners.</li>
+  </ul>
+  <dl>
+    <dt>Performance</dt>
+  </dl>
+  <ul>
+    <li>QAS2. A user places an order for an adventure travel package to the Consumer Web site. The user is notified on screen that the order has been successfully submitted and is being processed in less than five seconds.</li>
+    <li>QAS3. Up to 500 users click to see the catalog of adventure packages following a random distribution over 1 minute; the system is under normal operating conditions; the maximal latency to serve the first page of content is under 5 seconds; average latency for same is less than 2 seconds.</li>
+  </ul>
+  <dl>
+    <dt>Reliability</dt>
+  </dl>
+  <ul>
+    <li>QAS4. The Consumer Web site sent a purchase order request to the order processing center (OPC). The OPC processed that request but didn’t reply to Consumer Web site within five seconds, so the Consumer Web site resends the request to the OPC. The OPC receives the duplicate request, but the consumer is not double-charged, data remains in a consistent state, and the Consumer Web site is notified that the original request was successful in one hundred percent of the times.</li>
+  </ul>
+  <dl>
+    <dt>Security</dt>
+  </dl>
+  <ul>
+    <li>QAS5. Credit approval and payment processing are requested for a new order. In one hundred percent of the cases, the transaction is completed securely and cannot be repudiated by either party. The business goals are to provide customers and business partners confidence in security and to meet contractual, legal, and regulatory obligations for secure credit transactions.</li>
+    <li>QAS6. The OPC experiences a flood of calls through the Web Service Broker endpoint that do not correspond to any current orders. In one hundred percent of the times, the system detects the abnormal level of activity, notifies the system administrator, and continues to service requests in a degraded mode.</li>
+  </ul>
+  <dl>
+    <dt>Availability</dt>
+  </dl>
+  <ul>
+    <li>QAS7. The Consumer Web site is available to the user 24x7. If an instance of OPC application fails, the fault is detected and the system administrator is notified in 30 seconds; the system continues taking order requests; another OPC instance is created; and data remains in consistent state.</li>
+  </ul>
+  <!-- NewPP limit report Real time usage: 0.011 seconds Preprocessor visited node count: 2/1000000 Preprocessor generated node count: 8/1000000 Post‐expand include size: 0/2097152 bytes Template argument size: 0/2097152 bytes Highest expansion depth: 2/40 Expensive parser function count: 0/100 -->
+</root>
