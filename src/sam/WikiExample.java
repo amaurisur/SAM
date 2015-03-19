@@ -27,7 +27,7 @@ public final class WikiExample {
     /********************* pruebas json ************************/
     Indicador i = new Metrica_Compuesta("RootNode");
     Indicador i_1 = new Metrica_Compuesta("Metrica Compuesta 1");
-    Indicador i_2 = new Metrica_Compuesta("Metrica COmpuesta 2");
+    Indicador i_2 = new Metrica_Compuesta("Metrica Compuesta 2");
     Indicador i_1_1 = new Metrica_Simple("Metrica Simple 1.1",1);
     Indicador i_1_2 = new Metrica_Simple("Metrica Simple 1.2",1);
 
