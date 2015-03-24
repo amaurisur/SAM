@@ -22,6 +22,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Iterator;
+
+import org.basex.core.*;
+import org.basex.core.cmd.*;
 /**
  *
  * @author Daniel altamirano
@@ -30,7 +33,7 @@ public class MediaWikiService {
     
     private static final String ApiUrl = PropertiesService.Load("services").getProperty("mediawikiApi");
     
-    public static String GetWikiContent(HashMap hm){
+    public static String ConsultWiki(HashMap hm){
         Iterator it = hm.keySet().iterator();
         String url = ApiUrl;
         if(it.hasNext()){
@@ -49,6 +52,38 @@ public class MediaWikiService {
         
         try{
             result = sendGet(url);
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        
+        return result;
+    }
+    
+    public static String ConsultWiki(HashMap hm, String xquery){
+        Iterator it = hm.keySet().iterator();
+        String url = ApiUrl;
+        if(it.hasNext()){
+            url += "?";
+        }
+        while(it.hasNext()){
+            String key = (String)it.next();
+            String value = (String)hm.get(key);
+            url += key + "=" + value;
+            if (it.hasNext()) {
+                url += "&";
+            }
+        }
+        
+        String result = "";
+        
+        try{
+            String webResponse = sendGet(url);
+            
+            Context context = new Context();
+            CreateDB xdb = new CreateDB("MediawikiConsult", webResponse);
+            xdb.execute(context);
+            result = new XQuery(xquery).execute(context);
         }
         catch(Exception ex){
             ex.printStackTrace();
