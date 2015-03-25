@@ -81,9 +81,10 @@ public class MediaWikiService {
             String webResponse = sendGet(url);
             
             Context context = new Context();
-            CreateDB xdb = new CreateDB("MediawikiConsult", webResponse);
-            xdb.execute(context);
+            new CreateDB("MediawikiConsult", webResponse).execute(context);
             result = new XQuery(xquery).execute(context);
+            new DropDB("MediawikiConsult").execute(context);
+            context.close();
         }
         catch(Exception ex){
             ex.printStackTrace();
