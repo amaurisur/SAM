@@ -1,0 +1,5 @@
+Template:EscenarioDeCalidad
+---------------------------
+* QAS{{{2}}} - <span title="{{{1}}}"><span title="{{{2}}}">{{{3}}}</span></span>[[QAS::{{{1}}}| ]]
+
+
