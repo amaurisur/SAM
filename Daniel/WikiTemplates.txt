@@ -2,5 +2,9 @@ Template:QualityAttributeScenario
 ---------------------------
 * QAS{{{2}}} - <span title="QAS"><span title="{{{1}}}"><span title="{{{2}}}">{{{3}}}</span></span></span>[[QAS::{{{1}}}| ]]
 
+Usage:
+{{QualityAttributeScenario|MODIFICABILIDAD|1|TODO}}
+{{QualityAttributeScenario|MODIFICABILIDAD|2|TODO}}
+
 
 
