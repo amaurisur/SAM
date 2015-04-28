@@ -31,16 +31,13 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
-import org.basex.core.*;
-import org.basex.core.cmd.*;
-
 /**
  *
  * @author Daniel Altamirano
  */
 public class LEP extends SimpleIndicator{
 
-    private Properties architectureTags = PropertiesService.Load("architecturetags");
+    private final Properties architectureTags = PropertiesService.Load("architecturetags");
     
     public LEP(String name, double p) {
         super(name, p);
