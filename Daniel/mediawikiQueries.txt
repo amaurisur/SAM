@@ -6,3 +6,6 @@ http://localhost:8080/mediawiki/api.php?format=xml&action=parse&page=Top_Level_M
 
 Get pages with category
 http://localhost:8080/mediawiki/api.php?format=xml&action=query&list=categorymembers&cmtitle=Category:System_Overview
+
+Get mediawiki text
+http://localhost:8080/mediawiki/api.php?format=xml&action=parse&page=Adventure_DocumentRoadmap&prop=wikitext
