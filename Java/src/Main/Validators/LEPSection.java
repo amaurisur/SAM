@@ -15,28 +15,12 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package Models.Indicators;
-
-import Models.Indicator;
+package Main.Validators;
 
 /**
  *
  * @author Mr. Leinad
  */
-public class LEP extends Indicator {
-
-    public LEP(String name) {
-        super(name);
-    }
-
-    @Override
-    public void eval() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double percentageValidated() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+public class LEPSection {
     
 }

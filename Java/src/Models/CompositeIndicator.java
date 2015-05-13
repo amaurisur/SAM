@@ -8,6 +8,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 /**
  *
  * @author Daniel Altamirano
@@ -19,18 +20,35 @@ public class CompositeIndicator extends Indicator{
         super(name);
     }
 
-    @Override
     final public void add(Indicator i) {        
         indicators.add(i);
     }
     
-    @Override
     final public void remove(Indicator i) {
         indicators.remove(i);
+    }
+    
+    final public double percentageValidated() {
+        return percentage;
     }
 
     @Override
     public void eval() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Iterator<Indicator> iter = indicators.iterator();
+        
+        if(indicators.isEmpty()){
+            percentage = 0;
+            return;
+        }
+        
+        double result = 0;
+        
+        while(iter.hasNext()){
+            Indicator indicator = iter.next();
+            indicator.eval();
+            result += indicator.percentageValidated();
+        }
+        
+        percentage = result/indicators.size();
     }
 }
