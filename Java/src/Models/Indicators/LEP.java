@@ -56,20 +56,12 @@ public class LEP extends SimpleIndicator{
     private String FetchSystemOverviewPage() throws Exception{
         //Find page with System_overview category tag
         String systemOverviewTag = architectureTags.getProperty("system_overview");
-        HashMap hm = new HashMap();
-        hm.put("format", "xml");
-        hm.put("action", "query");
-        hm.put("list", "categorymembers");
-        hm.put("cmtitle", "Category:" + systemOverviewTag);        
+        HashMap hm = MediaWikiService.BuildCategoryQueryHashMap(systemOverviewTag);
         String xquery = "data(/api/query/categorymembers/cm[1]/@title)";
         String systemOverviewPageTitle = MediaWikiService.ConsultWiki(hm, xquery);
         
         if(!systemOverviewPageTitle.equals("")){
-            hm = new HashMap();
-            hm.put("format", "xml");
-            hm.put("action", "parse");
-            hm.put("page", URLEncoder.encode(systemOverviewPageTitle, "UTF-8"));
-            hm.put("prop", "sections");
+            hm = MediaWikiService.BuildPageSectionsQueryHashMap(systemOverviewPageTitle);
             xquery = "data(/api/parse/sections/s/@line)";
             String pageSections = MediaWikiService.ConsultWiki(hm, xquery);
             

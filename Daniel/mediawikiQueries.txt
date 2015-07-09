@@ -9,3 +9,23 @@ http://localhost:8080/mediawiki/api.php?format=xml&action=query&list=categorymem
 
 Get mediawiki text
 http://localhost:8080/mediawiki/api.php?format=xml&action=parse&page=Adventure_DocumentRoadmap&prop=wikitext
+
+
+
+
+PRELOAD TEXT FROM TEMPLATE
+http://localhost/mediawiki/index.php/TalkPage?action=edit&section=new&preload=Template:Surface_area
+
+
+
+QAS Template:
+
+* QAS{{{2}}} - <span title="QAS"><span title="{{{1}}}"><span title="{{{2}}}">{{{3}}}</span></span></span>[[QAS::{{{1}}}| ]]
+
+http://localhost/mediawiki/index.php/Template:QualityAttributeScenario
+{{QualityAttributeScenario|MODIFICABILIDAD|1|TODO}}
+{{QualityAttributeScenario|MODIFICABILIDAD|2|TODO}}
+
+QA:
+{{AtributoDeCalidad|TODO}}
+; {{{1}}}

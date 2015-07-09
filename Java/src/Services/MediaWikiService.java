@@ -20,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -32,6 +33,28 @@ import org.basex.core.cmd.*;
 public class MediaWikiService {
     
     private static final String ApiUrl = PropertiesService.Load("services").getProperty("mediawikiApi");
+    
+    public static HashMap BuildCategoryQueryHashMap(String category){
+        HashMap hm = new HashMap();
+        hm.put("format", "xml");
+        hm.put("action", "query");
+        hm.put("list", "categorymembers");
+        hm.put("cmtitle", "Category:" + category);
+        return hm;
+    }
+    
+    public static HashMap BuildPageSectionsQueryHashMap(String pageTitle){
+        try {
+            HashMap hm = new HashMap();
+            hm.put("format", "xml");
+            hm.put("action", "parse");
+            hm.put("page", URLEncoder.encode(pageTitle, "UTF-8"));
+            hm.put("prop", "sections");
+            return hm;
+        } catch (Exception e) {
+            return null;
+        }
+    }
     
     public static String ConsultWiki(HashMap hm){
         Iterator it = hm.keySet().iterator();

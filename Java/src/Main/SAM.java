@@ -5,18 +5,10 @@
  */
 package Main;
 
-import Models.SimpleIndicator;
-import Models.Indicator;
-import Models.CompositeIndicator;
 import Models.Indicators.LEP;
-import Services.MediaWikiService;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.Properties;
 /**
  *
