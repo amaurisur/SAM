@@ -50,11 +50,15 @@ public class EvalTODOinSectionView extends MeasurementMethod {
         }
     }
     
+    public static void setSection(Properties section){
+        EvalTODOinSectionView.sectionViewTags = section;
+    }
+    
     public static EvalTODOinSectionView getInstance(String name){
         if (INSTANCE == null) createInstance(name);
         return INSTANCE;
     }
-
+    
     /**
      * http://localhost/mediawiki/api.php?format=xml&action=parse&page=ViewModel1&section=2&prop=categories
      * 
@@ -92,7 +96,6 @@ public class EvalTODOinSectionView extends MeasurementMethod {
      *  </parse>
      * </api>
      * 
-     * <?xml version="1.0"?>
      * <api>
      *    <parse title="Top Level Module Uses View">
      *       <categories>
@@ -102,8 +105,6 @@ public class EvalTODOinSectionView extends MeasurementMethod {
      *       </categories>
      *   </parse>
      * </api>
-     * 
-     * 
      */
     @Override
     public boolean check(HashMap param) {
@@ -197,7 +198,7 @@ public class EvalTODOinSectionView extends MeasurementMethod {
     }
     
     private static EvalTODOinSectionView INSTANCE = null;
-    private  final Properties sectionViewTags = PropertiesService.Load("sectionView");
+    private  static Properties sectionViewTags = PropertiesService.Load("sectionView");
     private Set sections = null;
     
 }

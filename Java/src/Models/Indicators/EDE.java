@@ -71,6 +71,7 @@ public class EDE extends SimpleIndicator{
             paramQueryPage.put("prop", "sections");
             ch2_viewSectionWithTODO = measurementMethod2.check(paramQueryPage);
             //Rational sin TODO
+            measurementMethod2.setSection(architectureTags);
         }
         //Ponderacion, lalala determinamos el valor final a visualizar.
         percentage = 0.5;
