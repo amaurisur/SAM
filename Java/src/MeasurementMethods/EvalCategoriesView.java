@@ -72,6 +72,22 @@ public class EvalCategoriesView extends MeasurementMethod{
          * param.put("action", "parse");
          * param.put("page", "OPC_Module_Decomposition_View");
          * param.put("prop", "categories");
+         * http://localhost/mediawiki/api.php?format=xml&action=parse&prop=categories&page=OPC_Module_Decomposition_View
+         * <api>
+         *  <parse title="OPC Module Decomposition View">
+         *      <categories>
+         *          <cl sortkey="" missing="" xml:space="preserve">View</cl>
+         *          <cl sortkey="" xml:space="preserve">Module</cl>
+         *          <cl sortkey="" missing="" xml:space="preserve">PrimaryPresentation</cl>
+         *          <cl sortkey="ViewSectionPrimaryPresentation" hidden="" xml:space="preserve">VSPP</cl>
+         *          <cl sortkey="" missing="" xml:space="preserve">ElementCatalog</cl>
+         *          <cl sortkey="" missing="" xml:space="preserve">ContextDiagram</cl>
+         *          <cl sortkey="" missing="" xml:space="preserve">VariabilityGuide</cl>
+         *          <cl sortkey="" missing="" xml:space="preserve">Rationale</cl>
+         *          <cl sortkey="" missing="" xml:space="preserve">RelatedView</cl>
+         *      </categories>
+         *  </parse>
+         * </api>
          */
         String XML = MediaWikiService.GetWikiContent(param);
         sections = new HashSet(sectionViewTags.values());
@@ -101,7 +117,7 @@ public class EvalCategoriesView extends MeasurementMethod{
         } catch (ParserConfigurationException | SAXException | IOException ex) {
             Logger.getLogger(EvalCategoriesView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        //Si estaban incluidas todas las secciones retorna true.
         return (sections.isEmpty())&&(sections!=null);
         
     }    
