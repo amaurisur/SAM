@@ -35,6 +35,7 @@ public class MediaWikiService {
             result = sendGet(url);
         }
         catch(Exception ex){
+            System.out.println("MediaWikiService - GetWikiContent - Fallo al obtener Contenido en Wiki");
             ex.printStackTrace();
         }
         

@@ -52,6 +52,7 @@ public class EDE extends SimpleIndicator{
         String namePage = "";
         boolean ch1_viewSection = false;
         boolean ch2_viewSectionWithTODO = false;
+        boolean ch3_viewSectionWithTODOinRational = false;
                 
         this.pagesName = getNameViewPages(); 
         Iterator pagesNameIterator = this.pagesName.iterator();
@@ -62,8 +63,10 @@ public class EDE extends SimpleIndicator{
         paramQueryPage.put("prop", "categories");
         
         while (pagesNameIterator.hasNext()){
-            
+
             namePage = (String)pagesNameIterator.next();
+            System.out.printf("Pagina a evaluar checklist EDE", namePage);
+            
             paramQueryPage.put("page", namePage.replace(" ", "_"));  
             //Check Secciones en las vista 
             ch1_viewSection = measurementMethod1.check(paramQueryPage);
@@ -71,11 +74,20 @@ public class EDE extends SimpleIndicator{
             paramQueryPage.put("prop", "sections");
             ch2_viewSectionWithTODO = measurementMethod2.check(paramQueryPage);
             //Rational sin TODO
-            measurementMethod2.setSection(architectureTags);
+            //measurementMethod2.setSection(architectureTags);
+            ch3_viewSectionWithTODOinRational = !measurementMethod2.rationalWithoutTodo();
+            
         }
         //Ponderacion, lalala determinamos el valor final a visualizar.
-        percentage = 0.5;
-        
+        //percentage = 0.5;
+        if (ch1_viewSection) {
+            percentage += 0.25;
+        }
+        if (!ch2_viewSectionWithTODO) {
+            percentage += 0.75;
+        } else if (!ch3_viewSectionWithTODOinRational) {
+            percentage += 0.5;
+        } 
     }
     
     /**
@@ -91,11 +103,24 @@ public class EDE extends SimpleIndicator{
         hm.put("list", "categorymembers");
         hm.put("cmtitle", "Category:" + viewTag);
         String response = MediaWikiService.GetWikiContent(hm);
-        
+
+//        response
+//                = "<api>"
+//                + "  <query>   "
+//                    + " <categorymembers>    "
+//                    + "  <cm pageid=\"3\" ns=\"0\" title=\"OPC Module Decomposition View\" />  "
+//                    + "  <cm pageid=\"7\" ns=\"0\" title=\"Top Level Module Uses View\" />  "
+//                    + "  <cm pageid=\"101\" ns=\"0\" title=\"ViewModel1\" />   "
+//                    + "  <cm pageid=\"102\" ns=\"14\" title=\"Category:Module\" />  "
+//                    + "  </categorymembers>"
+//                + "  </query>"
+//                + "</api>";
+        //response = ("<?xml version=\"1.0\"?><api><query><categorymembers><cm pageid=\"101\" ns=\"0\" title=\"ViewModel1\" /><cm pageid=\"102\" ns=\"14\" title=\"Category:Module\" /></categorymembers></query></api>");
         return response;
     }
     
    /**
+    * Retorna la lista de paginas exceptuando aquellas que tienen en title=Category:
     * <?xml version="1.0"?>
     *   <api>
     *     <query>
@@ -108,10 +133,11 @@ public class EDE extends SimpleIndicator{
     */
     private ArrayList<String> getNameViewPages(){
         
-        ArrayList listNamePages = new ArrayList<String>();
+        ArrayList<String> listNamePages = new ArrayList<>();
         
         try {
             String xmlPages = getPagesTypeView();
+            System.out.println(xmlPages);
             
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
@@ -138,6 +164,7 @@ public class EDE extends SimpleIndicator{
     }
     
     private final Properties architectureTags = PropertiesService.Load("architecturetags");
+    //Nombre de paginas tipo vista.
     private ArrayList pagesName;
     private EvalCategoriesView  measurementMethod1 = null;
     private EvalTODOinSectionView measurementMethod2 = null;
