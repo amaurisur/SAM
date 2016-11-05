@@ -66,7 +66,7 @@ function update(fileName) {
                                 .data(nodes)
         //children se cambio por children
         //No estaría funcionando ver
-        var totalInst = d3.sum(root.children.map(function(d){return d.porcentaje}))
+        var totalInst = d3.sum(root.children.map(function(d){return d.percentage}))
         normFac = 1*totalInst/boxHeight
 
         //UPDATE: Update old elements (before making new ones)
@@ -111,7 +111,7 @@ function update(fileName) {
         newNodes.append("text")
             .attr("text-anchor", "middle")
             .attr("class", "nodeText")
-            .attr("id", "porcentaje")
+            .attr("id", "percentage")
             .attr("y", -boxHeight/2 + 2*fontSize + 4*lineSpace)
 
         newNodes.append("text")
@@ -141,21 +141,21 @@ function update(fileName) {
             .duration(1050)
             .attr("y", function(d){
                             //Define el valor de la posicion de y segun la escala
-                            return yscale_performancebar(d.porcentaje)
+                            return yscale_performancebar(d.percentage)
                             })
             .attr("height", function(d){
                             //Rellena segun el valor recibido
-                            return boxHeight/2 - yscale_performancebar(d.porcentaje)
+                            return boxHeight/2 - yscale_performancebar(d.percentage)
                             })
 
         existingLinks
             .transition()
             .duration(1000)
-            .style("stroke-width", function(d){return ((d.porcentaje*100)*60)/100})
+            .style("stroke-width", function(d){return ((d.percentage*100)*60)/100})
         existingNodes.select("#tituloMetrica")
             .text(function(d){return d.name/*.split("_").slice(-1)*/})
 
-        existingNodes.select("#porcentaje")
+        existingNodes.select("#percentage")
             .text(function(d){return node1Text(d)})
 
         existingNodes.select("#descripcionMetrica")
@@ -181,12 +181,12 @@ function update(fileName) {
           .transition()
           .duration(1000)
           .attr("y", function(d){
-              return yscale_performancebar(rootParams["porcentaje"])
+              return yscale_performancebar(rootParams["percentage"])
           })
           .attr("height", function(d){
-              return boxHeight/2 - yscale_performancebar(rootParams["porcentaje"])
+              return boxHeight/2 - yscale_performancebar(rootParams["percentage"])
           })
-        rootNode.select("#porcentaje")
+        rootNode.select("#percentage")
             //.text("Total Calidad Documentacion Cubierta:")
             //.append("text")
             .text(rootText)
@@ -217,7 +217,7 @@ function update(fileName) {
             svg.selectAll(".link")
                 .transition().duration(250)
                 .style("stroke", null)
-                .style("stroke-width", function(d){return (d.porcentaje)})
+                .style("stroke-width", function(d){return (d.percentage)})
         })
 
     });
@@ -260,14 +260,14 @@ function update(fileName) {
     // Format f1score message
     //valor de la metrica, o sea porcentaje a mostrar
     function node1Text(d) {
-        var f1Score = d.porcentaje
-        return "porcentaje: "+ d3.format("0.1f")(f1Score*100) + "%"
+        var f1Score = d.percentage
+        return "percentage: "+ d3.format("0.1f")(f1Score*100) + "%"
     }
     
     // Format root node message
     //valor de la metrica para el indicador final, o sea nodo raiz
     function rootText(d) {
-        var f1Score = d.porcentaje
+        var f1Score = d.percentage
         return d3.format("0.1f")(f1Score*100) + "%"
     }
 
@@ -278,9 +278,9 @@ function update(fileName) {
     	//var allInstOfThisClass = d3.sum(rootNode.children.map(function(d){return d.params.numInstToThisNode[className]}))
         //var thisNodeTPs = node.target.params.numInstToThisNode[className]
         //var myWidth = thisNodeTPs * boxHeight / allInstOfThisClass
-        var ancho = d3.select('#RootNode')[0][0].__data__.porcentaje
+        var ancho = d3.select('#RootNode')[0][0].__data__.percentage
         return d3.format("0.1f")((ancho*100)*90/100)
-        // var ancho = d3.select('#RootNode')[0][0].__data__.porcentaje.format("0.1f")
+        // var ancho = d3.select('#RootNode')[0][0].__data__.percentage.format("0.1f")
         // return ancho*90/100
     }
 }
